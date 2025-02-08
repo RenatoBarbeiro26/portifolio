@@ -1,1 +1,75 @@
+import java.util.Scanner;
 
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+
+
+    public static void main(String[] args) {
+
+        String linha = "****************************************";
+        double saldoInicial = 2500.00;
+        String dadosCliente = """
+                Dados inciais do cliente:
+                
+                Nome:             Renato Babeiro
+                Tipo conta:       Corrente
+                Saldo inicial: R$ """ + " " + saldoInicial;
+        double consultarSaldo = 2500.00;
+        double saldoAlterado = 0;
+        int receberValor = 0;
+        int transferirValor = 0;
+        int sair = 0;
+        String operacoes = """
+                Operações
+                
+                1- Consultar saldo
+                2- Receber valor
+                3- Transfeir valor
+                4- Estorno
+                5- Sair
+                
+                Digite a opção desejada:
+                """;
+
+
+        System.out.println(linha);
+        System.out.println(dadosCliente);
+        System.out.println(linha);
+        System.out.println(operacoes);
+        int condicao = 0;
+        while (condicao != 5) {
+
+        Scanner operacao = new Scanner(System.in);
+
+        condicao = operacao.nextInt();
+
+            if (condicao == 1) {
+                if(saldoAlterado == 0 ){
+                    saldoAlterado = saldoInicial +saldoAlterado;
+                }
+                System.out.println(saldoAlterado);
+            } else if (condicao == 2) {
+                System.out.println("Digite o valor depositado: ");
+                Scanner novoDeposito = new Scanner(System.in);
+                double valorDeposito = novoDeposito.nextDouble();
+                saldoAlterado = saldoInicial + valorDeposito;
+                System.out.println("Seu novo saldo é de: " + saldoAlterado);
+            } else if (condicao == 3) {
+                System.out.println("Digite o valor que quer tranferir: ");
+                Scanner valorTransferir = new Scanner(System.in);
+                double valorTransferido = valorTransferir.nextDouble();
+                if (valorTransferido <= saldoInicial) {
+                    saldoAlterado = saldoInicial - valorTransferido;
+                    System.out.println("Seu valor transferido: " + valorTransferido +
+                            "e seu saldo ficou em: " + saldoAlterado);
+                }
+
+            } else if (condicao == 4) {
+                System.out.println("Seu saldo voltou a: " +saldoInicial);
+                saldoAlterado = saldoInicial;
+
+            }
+        }
+    }
+}
